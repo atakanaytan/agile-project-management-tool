@@ -1,11 +1,12 @@
 package io.projectmanagementplatform.pmt.services;
 
 import io.projectmanagementplatform.pmt.Exceptions.ProjectIdException;
+import io.projectmanagementplatform.pmt.domain.Backlog;
 import io.projectmanagementplatform.pmt.domain.Project;
+import io.projectmanagementplatform.pmt.repositories.BacklogRepository;
 import io.projectmanagementplatform.pmt.repositories.ProjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import io.projectmanagementplatform.pmt.Exceptions.ProjectIdException;
 
 @Service
 public class ProjectService {
@@ -13,14 +14,35 @@ public class ProjectService {
     @Autowired
     private ProjectRepository projectRepository;
 
+    @Autowired
+    private BacklogRepository backlogRepository;
+
     public Project saveOrUpdate(Project project) {
         try {
-            project.setProjectIdentifier(project.getProjectIdentifier().toUpperCase());
+            project.setProjectIdentifier(returnProjectIdentifier(project));
+
+            if(project.getId() ==null){
+                Backlog backlog = new Backlog();
+                project.setBacklog(backlog);
+                backlog.setProject(project);
+                backlog.setProjectIdentifier(returnProjectIdentifier(project));
+            }
+
+            if(project.getId() != null){
+                project.setBacklog(backlogRepository.findByProjectIdentifier(returnProjectIdentifier(project)));
+            }
+
             return projectRepository.save(project);
         }catch (Exception e){
             throw new ProjectIdException("Project ID '"+project.getProjectIdentifier().toUpperCase()+"' already exist");
         }
     }
+
+    public String returnProjectIdentifier(Project project){
+
+        return project.getProjectIdentifier().toUpperCase();
+    }
+
 
     public Project findProjectByIdentifier(String projectId ){
            Project project = projectRepository.findByProjectIdentifier(projectId);

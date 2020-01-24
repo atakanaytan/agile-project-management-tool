@@ -55,5 +55,4 @@ export const deleteProject = id => async dispatch => {
             payload: id
         });
     }
-     
-}
+};
