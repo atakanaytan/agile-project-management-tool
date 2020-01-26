@@ -8,7 +8,7 @@ import {
     const initialState = {
         project_tasks:[],
         project_task: {}
-    }
+    };
 
     
     export default function(state= initialState, action){
@@ -23,14 +23,15 @@ import {
             case GET_PROJECT_TASK:
                 return{
                     ...state,
-                    project_tasks: action.payload
+                    project_task: action.payload
                 };
 
             case DELETE_PROJECT_TASK:
                 return{
                     ...state,
-
-                    //T0_DO
+                    project_tasks: state.project_tasks.filter(
+                    project_task => project_task.projectSequence  !== action.payload)
+                    
                 };
              
             default:
