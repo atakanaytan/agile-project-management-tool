@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from "react-redux";
 import { deleteProject } from "../../actions/projectActions";
-import UpdateProject from './UpdateProject';
+
 
 class ProjectItem extends Component {
 
@@ -27,11 +27,11 @@ class ProjectItem extends Component {
                          </div>
                          <div className="col-md-4 d-none d-lg-block">
                              <ul className="list-group">
-                                 <a href="#">
+                                 <Link to={`/projectBoard/${project.projectIdentifier}`}>
                                      <li className="list-group-item board">
                                          <i className="fa fa-flag-checkered pr-1">Project Board </i>
                                      </li>
-                                 </a>
+                                 </Link>
                                  <Link to={`/UpdateProject/${project.projectIdentifier}`}>
                                      <li className="list-group-item update">
                                          <i className="fa fa-edit pr-1">Update Project Info</i>
