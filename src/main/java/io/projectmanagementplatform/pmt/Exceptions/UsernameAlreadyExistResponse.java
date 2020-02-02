@@ -1,10 +1,10 @@
 package io.projectmanagementplatform.pmt.Exceptions;
 
-public class UsernameAlreadyExistExceptionResponse {
+public class UsernameAlreadyExistResponse {
 
     private String username;
 
-    public UsernameAlreadyExistExceptionResponse(String username){
+    public UsernameAlreadyExistResponse(String username){
         this.username = username;
 
     }

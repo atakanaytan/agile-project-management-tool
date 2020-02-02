@@ -1,7 +1,6 @@
 package io.projectmanagementplatform.pmt.services;
 
 import io.projectmanagementplatform.pmt.Exceptions.UsernameAlreadyExistException;
-import io.projectmanagementplatform.pmt.Exceptions.UsernameAlreadyExistExceptionResponse;
 import io.projectmanagementplatform.pmt.domain.User;
 import io.projectmanagementplatform.pmt.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
