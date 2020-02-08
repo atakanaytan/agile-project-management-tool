@@ -50,7 +50,7 @@ public class JwtTokenProvider {
         } catch(ExpiredJwtException ex){
             System.out.println("Expired JWT Token");
         }catch(UnsupportedJwtException ex){
-            System.out.println("Unsupported JTW Tokem");
+            System.out.println("Unsupported JTW Token");
         }catch(IllegalArgumentException ex){
             System.out.println("JWT claims string is empty");
         }
